@@ -1,0 +1,507 @@
+:root {
+    --hide: 1s;
+    --show: 1s;
+    --color1:  hsla(244, 100%, 53%, 0.7);
+    --color2: hsl(from var(--color1) h s 70%);
+    /* --color2:  hsl(251, 100%, 62%); */
+    font-size: 0.04vh;
+    background-color: #000;
+  }
+
+
+  :nth-child(1) {
+    --index: 0;
+  }
+  :nth-child(2) {
+    --index: 1;
+  }
+  :nth-child(3) {
+    --index: 2;
+  }
+  :nth-child(4) {
+    --index: 3;
+  }
+  :nth-child(5) {
+    --index: 4;
+  }
+  :nth-child(6) {
+    --index: 5;
+  }
+  :nth-child(7) {
+    --index: 6;
+  }
+  :nth-child(8) {
+    --index: 7;
+  }
+  :nth-child(9) {
+    --index: 8;
+  }
+
+@font-face {
+    font-family: Graphik;
+    src: url(./assets/fonts/Graphik-Regular.ttf);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Graphik;
+    src: url(./assets/fonts/Graphik-Bold.ttf);
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: Graphik;
+    src: url(./assets/fonts/Graphik-Semibold.ttf);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Graphik;
+    src: url(./assets/fonts/Graphik-Light.ttf);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Graphik;
+    src: url(./assets/fonts/Graphik-Medium.ttf);
+    font-weight: 500;
+}
+@font-face {
+    font-family: GT-Sectra;
+    src: url(./assets/fonts/GT-Sectra-Fine-Regular.otf);
+}
+
+html {
+    width: 56.25vh;
+    background-color: #000;
+    /* background-image: radial-gradient(80% 80% at 50% 100%, rgba(58, 14, 255, 0.15) 0%, rgba(58, 14, 255, 0) 100%); */
+    position: relative;
+    overflow: hidden;
+}
+
+#background {
+    position: absolute;
+    top:0px;
+    left:0px;
+    height:100%;
+    width :100%;
+    background-image: linear-gradient(rgba(58, 14, 255, 0) 0%, rgba(58, 14, 255, 0) 40%, rgba(58, 14, 255, 1) 100%);
+    opacity: 20%;
+
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    transform-origin: bottom center;
+    transform: scale(100%, 100%);
+    /* background-size: 100% 100%; */
+    transition: var(--show) ease-out 0.8s;
+
+    z-index: 0;
+}
+
+#background::after{
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width:100%;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    transform-origin: bottom center;
+    transform: scale(100%, 100%);
+    /* background-size: 100% 100%; */
+    /* background-image: radial-gradient(73.28% 15.26% at 50% 100%, rgba(95, 59, 255, 0.5) 0%, rgba(0, 0, 0, 0) 100%); */
+    background-image: linear-gradient(rgba(95, 59, 255, 0) 0%, rgba(95, 59, 255, 0) 70%, rgba(95, 59, 255, 0.8) 100%);
+    opacity: 0%;
+    transition: opacity var(--show) ease-in 0.8s, transform 0s ease-in 2s;
+}
+
+#background.highlight {
+    /* opacity: 40%; */
+    /* transform: scale(100%, 400%); */
+    /* background-size: 150% 400%; */
+    transition: var(--hide) ease-in 0.5s;
+    animation: anim 3s ease-in 0.5s 1 forwards;
+}
+
+#background.highlight::after{
+    opacity: 100%;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    transform: scale(100%, 200%);
+    /* background-size: 200% 500%; */
+    transition: calc(var(--hide) * 2) ease-out;
+}
+
+@keyframes anim {
+    0% {
+        transform: scale(100%, 100%);
+        opacity: 20%;
+    }
+    55% {
+        opacity: 50%;
+    }
+    70% {
+        transform: scale(100%, 400%);
+    }
+    100%{
+        transform: scale(100%, 100%);
+        opacity: 20%;
+    }
+  }
+
+/* #bg0{
+    --height: 100%;
+    --width: 80%;
+    opacity: 45%;
+    filter: blur(25vh);
+
+    z-index: -10;
+    position: absolute;
+    height: var(--height);
+    width: var(--width);
+
+    bottom:calc(0px - calc(var(--height) / 2));
+    left:calc(50% - calc(var(--width) / 2));
+    background-color: var(--color1);
+    border-radius: 50%;
+
+    transition: var(--hide) ease-out 0.5s;
+}
+
+#bg1{
+    --height: 5%;
+    --width: 80%;
+    opacity: 0%;
+    filter: blur(4vh);
+
+    z-index: -10;
+    position: absolute;
+    height: var(--height);
+    width: var(--width);
+
+    bottom:calc(0px - calc(var(--height) / 2));
+    left:calc(50% - calc(var(--width) / 2));
+    background-color: var(--color2);
+    border-radius: 50%;
+
+    transition: var(--hide) ease-out 0.5s;
+}
+
+#bg0.hide{
+    --height: 350%;
+    opacity: 100%;
+    transition: var(--hide) ease-in 0.2s;
+}
+
+#bg1.hide{
+    filter: blur(8vh);
+    opacity: 30%;
+    --height: 40%;
+    transition: calc(var(--hide) * 2) ease-out;
+}
+
+
+/* html::after {
+    content: "";
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(186.41% 121.16% at 50% 100%, rgba(58, 14, 255, 0.35) 0%, rgba(58, 14, 255, 0) 100%), #000000;
+    opacity: 0; 
+    z-index: -1; 
+    transition: opacity 2s;
+}
+
+html.highlight::after {
+    opacity: 1; 
+} */
+
+line{
+    height: 1px;
+    background-color: white;
+    opacity: 20%;
+    margin: 24rem 0rem;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 2vh;
+    overflow: hidden;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: Graphik;
+}
+
+h3{
+    font-weight: 300;
+    font-size:60rem;
+    margin:0px;
+}
+
+h1{
+    font-weight: 600;
+    font-size:80rem;
+    margin:0px;
+    line-height: 110%;
+    /* width:90% */
+}
+
+h2{
+    font-weight: 400;
+    font-size:80rem;
+    margin:0px;
+    line-height: 110%;
+    /* width:90% */
+}
+
+h4{
+    font-weight: 600;
+    font-size:60rem;
+    margin:0px;
+    line-height: 120%;
+    margin-top: 0;
+    color: #ffffff;
+    transition: var(--show) 0.5s;
+    /* width:90% */
+}
+h5{
+    /* font-style: italic; */
+    opacity: 60%;
+    font-weight: 300;
+    font-size:52rem;
+    margin:0px;
+    line-height: 120%;
+    margin-top: 20rem;
+    margin-bottom: 5rem;
+    color: #ffffff;
+    transition: var(--show) 0.5s;
+    /* width:90% */
+}
+
+p{
+    margin:0px;
+}
+
+.top{
+    display: flex;
+    flex-direction: column;
+    gap:24rem;
+    transition: var(--show) 0.5s;
+}
+
+.options{
+    display: flex;
+    flex-direction: column;
+    gap: 1.3vh;
+    transition: var(--show) 0.5s;
+}
+
+.option{
+    box-sizing: border-box;
+    position: relative;
+    padding: 2.5vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: 1.5vh;
+    gap: 2vh;
+    overflow: hidden;
+    background-color: hsla(251, 100%, 65%, 0.09); 
+    /* background-color: hsl(251, 100%, 53%); */
+    box-shadow: inset 0 0 0 5rem hsla(251, 100%, 65%, 0.07);
+
+    transition: var(--show) 0.5s;
+}
+
+.option::before{
+    /* box-sizing: border-box;
+    border-radius: 1.5vh;
+    position: absolute;
+    content: "";
+    top:0;
+    left:0;
+    height:100%;
+    width:100%;
+    background-color: rgba(255, 255, 255, 0.4);
+    mix-blend-mode: soft-light;
+    border: 5rem solid rgba(255, 255, 255, 0.6);
+    z-index:-1;
+    transition: var(--show) 0.5s; */
+}
+
+.optional{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* justify-content: space-between; */
+    gap: 48rem;
+    padding: 2.5vh;
+
+    border-radius: 1.5vh;
+    overflow: hidden;
+    font-family: Graphik;
+    font-weight: 400;
+    font-size: 60rem;
+    background-color: rgba(255, 255, 255, 0.02);
+    box-sizing: border-box;
+    transition: var(--show) 0.5s;
+}
+
+.option div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 48rem;
+    font-family: Graphik;
+    font-weight: 400;
+    font-size: 60rem;
+}
+
+.option video{
+    border-radius: 0.75vh;
+    width:100%;
+    height: 40vh;
+    background-color: #000;
+    object-fit: cover;
+    transition: var(--show) 0.5s;
+}
+
+.options.hide .option video{
+    opacity: 0%;
+    transition: var(--hide);
+}
+
+b{
+    font-weight: 500;
+    font-style: italic;
+}
+
+
+
+/* .option p::before{
+    font-family: GT-Sectra;
+    color: #936FFF;
+    display:block;
+    font-size: 55rem;
+    margin-bottom: 12rem;
+} */
+
+i{
+    /* #936FFF */
+    color: var(--color2); 
+    display:inline;
+    font-size: 56rem;
+    transition: var(--show) 0.5s;
+}
+
+.option.mic i::before{
+    content:"\f130";
+}
+
+.option.cam i::before{
+    content:"\f030";
+}
+
+.option.joy i::before{
+    content:"\f8c5";
+}
+
+.optional.mic i::before{
+    content:"\f130";
+}
+
+.optional.cam i::before{
+    content:"\f030";
+}
+
+.optional.joy i::before{
+    content:"\f8c5";
+}
+
+/* .option.mic p::before{
+    content:"Microphone";
+}
+
+.option.cam p::before{
+    content:"Camera";
+}
+
+.option.joy p::before{
+    content:"Joystick";
+} */
+
+
+
+
+.hide{
+    transition: var(--hide);
+    transform: translateY(200rem);
+    /* margin-bottom: -200rem; */
+}
+
+.top.hide{
+    opacity: 0%;
+    transition: var(--hide);
+    transform: translateY(200rem);
+    /* margin-top: 80rem; */
+}
+
+.options.hide{
+    transition: var(--hide);
+    transform: translateY(600rem);
+    /* margin-bottom: -600rem; */
+}
+
+.options.hide .option::before{
+    background-color: rgba(255, 255, 255, 0);
+    border: 4rem solid rgba(255, 255, 255, 0);
+    transition: var(--hide);
+}
+
+.options.hide .option{
+    transform: translateY(calc(var(--index) * 40rem));
+    /* margin-top: calc(var(--index) * 40rem); */
+    background-color: rgba(255, 255, 255, 0);
+    box-shadow: inset 0 0 0 5rem rgba(255, 255, 255, 0);
+    color: #ffffff00;
+    transition: var(--hide);
+}
+
+.options.hide .optional{
+    /* margin-top: calc(var(--index) * 40rem); */
+    transform: translateY(calc(var(--index) * 40rem));
+    background-color: rgba(255, 255, 255, 0);
+    box-shadow: inset 0 0 0 5rem rgba(255, 255, 255, 0);
+    color: #ffffff00;
+    transition: var(--hide);
+}
+
+.options.hide .option i{
+    color: #ffffff00;
+    transition: var(--hide);
+}
+
+.options.hide h4{
+    transform: translateY(0rem);
+    /* margin-top: 200rem; */
+    color: #ffffff00;
+    transition: var(--hide);
+}
+
+.options.hide h5{
+    transform: translateY(0rem);
+    color: #ffffff00;
+    transition: var(--hide);
+}
+
+
+
