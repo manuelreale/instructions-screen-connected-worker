@@ -61,7 +61,7 @@ function createOption(message, n){
     if(control.Media=="feed"){
         let feed = document.createElement("video");
         let source = document.createElement("source");
-        source.src="./video.mp4";
+        source.src="./assets/video.mp4";
         source.type="video/mp4";
 
         feed.autoplay=true;
